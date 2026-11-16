@@ -9,7 +9,7 @@
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-black.svg" alt="License: MIT"></a>
     <a href="package.json"><img src="https://img.shields.io/badge/node-%3E%3D20-black.svg" alt="Node >= 20"></a>
     <a href="tsconfig.json"><img src="https://img.shields.io/badge/TypeScript-strict-black.svg" alt="TypeScript strict"></a>
-    <a href="https://github.com/hritvikgupta/reagent/issues"><img src="https://img.shields.io/badge/PRs-welcome-black.svg" alt="PRs welcome"></a>
+    <a href="https://github.com/aayush-wiz/reagent/issues"><img src="https://img.shields.io/badge/PRs-welcome-black.svg" alt="PRs welcome"></a>
   </p>
 
   <p>
@@ -84,7 +84,7 @@ Real screenshots from an actual run — a biosecurity policy brief on internatio
 **Prerequisites:** Node ≥ 20, Docker (for the sandbox), Redis (`brew services start redis` or equivalent).
 
 ```bash
-git clone https://github.com/hritvikgupta/reagent.git
+git clone https://github.com/aayush-wiz/reagent.git
 cd reagent
 npm install
 cp .env.example .env   # fill in your model provider keys
@@ -136,7 +136,7 @@ scripts/dev.sh        start/stop/status/restart for the whole stack
 - [ ] Run reattachment after a worker restart, instead of hard-failing in-flight runs
 - [ ] Postgres as an alternative to SQLite for multi-instance deployments
 
-Have an idea? [Open an issue](https://github.com/hritvikgupta/reagent/issues) — the roadmap above isn't fixed.
+Have an idea? [Open an issue](https://github.com/aayush-wiz/reagent/issues) — the roadmap above isn't fixed.
 
 ## Contributing
 
