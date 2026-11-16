@@ -1,0 +1,42 @@
+---
+title: Search strategy
+description: Which node to expand next — breadth-first, depth-first, best-first, beam, and Monte-Carlo tree search.
+---
+
+Reagent rarely can test every hypothesis. Exploration is a **search over a tree**: a node is a hypothesis (or an experiment plan), expanding it generates its children (refinements, follow-up experiments), and each node has a score `h(node)`.
+
+```text
+h(node) = tournament rating · evidential support · expected information gain
+```
+
+For hypotheses the score is the [Elo](/ranking/elo) rating from the tournament plus evidential support; for experiments it's the expected information gain.
+
+## The strategies
+
+| Strategy | Behaviour | Use when |
+|----------|-----------|----------|
+| **BFS** | Level-by-level, all depth-1 before depth-2. | Shallow space; you want coverage. |
+| **DFS** | Down one branch before backtracking. | A strong lead worth chasing; backtracking is cheap. |
+| **Best-first** *(default)* | Always expand the highest-scoring node. | You can score nodes — the tournament gives a rating. |
+| **Beam (width k)** | Keep only the top-`k` each level; prune the rest. | Wide branching, bounded cost. `k = 3–5` rivals. |
+| **MCTS** | Balance explore/exploit via UCB over rollouts. | Sequential, multi-stage experimental programs. |
+
+## Exploration vs exploitation
+
+Every strategy trades **exploiting** the current best node against **exploring** uncertain ones.
+
+- Pure exploitation (greedy on the leader) risks a local optimum — you confirm a good-looking wrong hypothesis.
+- Pure exploration (try everything) wastes budget.
+- **Best-first or beam scored by the tournament, plus a bandit rule for *which experiment next*, is the balanced default.**
+
+## Keeping the tournament cheap
+
+Comparing every pair of hypotheses grows as **O(n²)**. For a large board, Reagent bounds it:
+
+- **Beam** — only compare the top-`k` rivals against each other.
+- **Swiss pairing** — each round, pair hypotheses of similar rating; a few rounds rank a big field cheaply.
+- **Successive halving** — give every hypothesis a small test, keep the top half, repeat ([Breeding](/breeding/successive-halving)).
+
+## The practical default
+
+Beam search, width **3–5** over the hypothesis board, scored by the tournament, expanding the leader and its nearest rival each cycle, and choosing the next experiment with a bandit or [Bayesian-optimization](/selection/bayesian-optimization) rule when experiments are expensive. Beam width is simply how many rivals you carry. Escalate to MCTS only for genuinely multi-stage programs.

@@ -1,0 +1,33 @@
+---
+title: Bradley–Terry
+description: The accurate final ranking, fit from the whole match log at once.
+---
+
+Live Elo is order-dependent and a little noisy. Once the match log is complete, Reagent fits a **Bradley–Terry** model — one latent *strength* per hypothesis, estimated from *all* pairwise results at once (the same model behind LMArena and Arena-Hard) — to produce the definitive ranking.
+
+| | |
+|---|---|
+| **What** | One strength per hypothesis, fit by maximum likelihood. |
+| **When** | After the tournament, for the definitive ordering. |
+| **In → out** | The full log of pairwise outcomes → a sorted strength per hypothesis. |
+
+## The model
+
+Each hypothesis `i` has a strength `sᵢ ≥ 0`. The probability it beats a rival is its share of their combined strength:
+
+```text
+P(i beats j) = s_i / (s_i + s_j)
+```
+
+The strengths are fit by **maximum likelihood** over the whole match log — solved with a closed-form iteration that needs nothing heavier than basic linear algebra.
+
+## Elo vs Bradley–Terry
+
+| | Live Elo | Bradley–Terry |
+|---|----------|---------------|
+| Runs | continuously, during the tournament | once, after the log is complete |
+| Sees | one match at a time | every match at once |
+| Order sensitivity | yes (sequential updates) | no (global fit) |
+| Use for | keeping the board ordered live | the definitive final ranking |
+
+Reagent reaches for Bradley–Terry when it needs a *more accurate final ranking* than the running Elo — typically at synthesis, to report which hypothesis the whole tournament favoured.

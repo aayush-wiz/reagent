@@ -1,0 +1,54 @@
+---
+title: Searching papers
+description: How Reagent finds and reads real literature across dozens of scientific databases.
+---
+
+Before it hypothesizes or analyses anything, Reagent grounds itself in real papers — it prevents reinventing the wheel and keeps every claim traceable. Rather than one search box, it can reach **42 scientific sources** spanning the literature, life sciences, and chemistry, and picks the right ones per topic.
+
+## The sources
+
+| Domain | Count | Examples |
+|--------|:-----:|----------|
+| Genomics | 14 | Ensembl, NCBI, MyGene, UCSC, MyVariant |
+| Literature | 7 | OpenAlex, PubMed, Europe PMC, arXiv, Semantic Scholar |
+| Proteomics | 7 | UniProt, IntAct |
+| Chemistry | 6 | PubChem, ChEMBL |
+| Structure | 4 | RCSB PDB |
+| Biology | 3 | — |
+| Clinical | 1 | — |
+
+Reagent works across **any field** — it chooses the broadest general index for a fresh topic, and the domain-specific sources when the question is biomedical, chemical, or structural.
+
+## How a search runs
+
+<Steps>
+  <Step title="Decompose the topic into facets">
+    A broad question is split into 3–5 distinct facets, each searched independently so coverage is wide, not shallow.
+  </Step>
+  <Step title="Cast a wide net, in parallel">
+    Each facet runs several varied queries — original terms, synonyms, broader concepts, and specific method or dataset names — across multiple databases at once.
+  </Step>
+  <Step title="Deduplicate and prefer the best version">
+    Results are merged and de-duplicated by DOI and title, preferring the peer-reviewed version over a preprint.
+  </Step>
+  <Step title="Read, don't skim">
+    For the papers that matter, Reagent reads the full text and extracts the actual claims, methods, and numbers — not a summary from the title.
+  </Step>
+</Steps>
+
+Papers worth keeping are added to your workspace **library**, so a research accumulates its own corpus you can revisit and review.
+
+<Panel title="Real papers only">
+  Every paper Reagent cites is one it actually retrieved and read, with its authors, year, venue, and DOI verified. If it can't find a real source for a claim, it says so — it never invents a citation.
+</Panel>
+
+## Next
+
+<CardGroup cols={2}>
+  <Card title="Literature review" icon="book-open" href="/workflow/literature-review">
+    How the papers are screened, synthesized, and turned into evidence.
+  </Card>
+  <Card title="Framing hypotheses" icon="git-branch" href="/workflow/hypotheses">
+    Turning the literature into competing, testable hypotheses.
+  </Card>
+</CardGroup>

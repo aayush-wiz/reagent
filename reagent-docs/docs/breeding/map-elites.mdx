@@ -1,0 +1,27 @@
+---
+title: MAP-Elites
+description: Quality-diversity search — keep the best hypothesis per behaviour cell, not one global winner.
+---
+
+When Reagent evolves survivors into new hypotheses, collapsing to a single best idea kills diversity and risks premature convergence. **MAP-Elites** is quality-diversity search: it keeps the best solution **per behaviour cell**, so a spread of strong hypotheses is retained along chosen axes (e.g. mechanism type × boldness). It's the core idea behind AlphaEvolve.
+
+| | |
+|---|---|
+| **What** | An archive (a grid) holding the best solution in each behaviour cell. |
+| **When** | While breeding — to keep hypotheses that are high-scoring *and* varied. |
+| **In → out** | An evaluate function, a mutation step, and a descriptor grid → the filled archive. |
+
+## The loop
+
+```text
+1. pick a random elite from the archive
+2. mutate it
+3. evaluate → (fitness, descriptors)
+4. place it in its descriptor cell IF it beats the current occupant
+```
+
+The grid over the descriptor axes *is* the output — the best solution found in each cell. Because each cell holds the best of its behavioural niche, the result is a **diverse** front of strong solutions, not one global winner.
+
+<Panel title="The model is the mutation operator">
+  Reagent itself proposes each mutated hypothesis; the archive simply keeps the best occupant of each cell. Quality-diversity keeps the board from converging on three flavours of one idea.
+</Panel>

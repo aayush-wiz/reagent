@@ -1,0 +1,44 @@
+---
+title: Running experiments
+description: Executing the analysis in an isolated compute sandbox, producing real figures, and verifying every number before beliefs are updated.
+---
+
+With a pre-registered methodology in hand, Reagent runs the work in a real **compute sandbox** — an isolated, per-research container with the scientific Python stack. It gathers the data the methodology calls for, executes the pipeline, and produces figures and tables from actual results.
+
+## In the sandbox
+
+- Runs code and notebooks in an isolated environment, with packages installed as needed.
+- Reads the workspace paper corpus directly for text- and data-mining.
+- Saves tables and figures as named files you can open.
+
+## Integrity, before and after
+
+Real computation is only trustworthy if the numbers are. Reagent checks integrity at two gates:
+
+<Steps>
+  <Step title="Before compute — audit the plan">
+    A critique specialist verifies the pipeline is sound and grounded in the literature, with no data leakage and a valid statistical plan.
+  </Step>
+  <Step title="After compute — verify every number">
+    A second pass traces every reported number back to a concrete output file. A value that appears in the write-up but in no result is a blocking issue.
+  </Step>
+</Steps>
+
+<Panel title="Report results as produced">
+  Reagent reports raw computational outputs exactly as produced — it never applies post-hoc calibration, scaling, or adjustment to make results agree with the literature. Disagreement is data.
+</Panel>
+
+## Figures from real data
+
+A computational project must produce at least one figure from **actual data** — not a placeholder — with a caption, before Reagent synthesizes anything. The visualization is part of the evidence, not decoration.
+
+## Next
+
+<CardGroup cols={2}>
+  <Card title="Ranking hypotheses" icon="trophy" href="/ranking/elo">
+    Feeding the result back into the tournament.
+  </Card>
+  <Card title="Findings & write-up" icon="file-check" href="/workflow/findings">
+    Turning verified results into cited conclusions.
+  </Card>
+</CardGroup>

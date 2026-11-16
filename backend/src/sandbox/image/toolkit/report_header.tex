@@ -1,0 +1,31 @@
+% Reagent — professional research-report styling (pandoc → pdflatex header).
+% Kept to packages in the curated texlive set baked into the sandbox image.
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{float}
+
+% Brand accents (Reagent sage green + warm ink).
+\definecolor{reagent}{HTML}{2F5A43}
+\definecolor{reagentink}{HTML}{1C1B19}
+\definecolor{reagentmut}{HTML}{6F6A61}
+
+% Colored, spaced section headings with a subtle rule under H1.
+\titleformat{\section}{\color{reagent}\Large\bfseries}{\thesection}{0.6em}{}[{\color{reagent!25}\titlerule[0.8pt]}]
+\titleformat{\subsection}{\color{reagent}\large\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\color{reagentink}\normalsize\bfseries}{\thesubsubsection}{0.5em}{}
+
+% Running header/footer: brand mark on the right, page number centered.
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[R]{\small\color{reagentmut}Reagent}
+\fancyfoot[C]{\small\color{reagentmut}\thepage}
+
+% Tighter, cleaner default spacing.
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}

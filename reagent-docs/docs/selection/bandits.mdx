@@ -1,0 +1,44 @@
+---
+title: Multi-armed bandits
+description: Cheap next-experiment selection — UCB1, Thompson sampling, and ε-greedy.
+---
+
+When there are a handful of candidate experiments, each returning a noisy reward, a **bandit** picks which to run next — balancing **exploiting** the current best against **exploring** the uncertain ones. Reagent uses three standard rules.
+
+| | |
+|---|---|
+| **What** | Pick which experiment to try next from each option's reward history. |
+| **When** | A few candidate experiments, each with a noisy reward, cheap to run. |
+| **In → out** | Per-option history of rewards → the option to try next. |
+
+## UCB1 — upper confidence bound
+
+```text
+pick  argmax_i   x̄_i + √(2 · ln N / n_i)
+```
+
+Mean reward `x̄ᵢ` plus an exploration bonus that grows for options tried few times (`nᵢ`) as total trials `N` rise. Deterministic, no tuning.
+
+## Thompson sampling (Bernoulli)
+
+```text
+sample  θ_i ~ Beta(1 + wins_i, 1 + losses_i)   →   pick argmax θ_i
+```
+
+Draw a plausible success rate for each option from its posterior and pick the sampled best — exploration falls out naturally as counts grow.
+
+## ε-greedy
+
+```text
+best option with probability (1 − ε),  random option with probability ε
+```
+
+The simplest rule: mostly exploit, occasionally explore at random. A sane baseline when the others are overkill.
+
+## Which to use
+
+- **UCB1** — deterministic, good default, no tuning.
+- **Thompson** — usually best empirically; naturally Bayesian.
+- **ε-greedy** — trivially simple; fine for a quick choice.
+
+For a continuous knob (a threshold, a rate) rather than discrete options, Reagent uses [Bayesian optimization](/selection/bayesian-optimization) instead.

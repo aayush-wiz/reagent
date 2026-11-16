@@ -1,0 +1,49 @@
+---
+title: The research loop
+description: The iterative Strong-Inference tournament — how Reagent does real research instead of a linear guess-and-write.
+sidebar:
+  label: The research loop
+---
+
+Real research is a **loop, not a line**. A linear pipeline — guess one hypothesis, run one analysis, write it up — can only ever *confirm* what you already guessed. Reagent instead holds several rival hypotheses, designs experiments to *falsify* them, and re-enters earlier steps as evidence arrives. The method is built from three ideas:
+
+<CardGroup cols={3}>
+  <Card title="Strong Inference" icon="git-fork">
+    Hold multiple working hypotheses at once and design the crucial experiment that would kill some of them (J. R. Platt, 1964).
+  </Card>
+  <Card title="Generate–debate–evolve" icon="trophy">
+    Make the rivals compete, keep what the evidence favours, and breed the survivors into sharper hypotheses.
+  </Card>
+  <Card title="Pre-registration" icon="lock">
+    Commit to what a result will mean before running it — the discipline that prevents fishing for a favourable outcome.
+  </Card>
+</CardGroup>
+
+## The operations
+
+Reagent moves through these as the evidence demands — re-entering any of them, in any order, not on a fixed schedule.
+
+| # | Step | What happens | Where it goes |
+|---|------|--------------|---------------|
+| 01 | **Scope** | Restate the question in one line; define what a decisive answer looks like. | — |
+| 02 | **Literature** | Ground in real papers — decompose the topic into facets and review each in parallel. | [Searching papers](/workflow/searching-papers) |
+| 03 | **Generate rivals** | Add several competing hypotheses that genuinely disagree, each with its crucial refutation test. | [Framing hypotheses](/workflow/hypotheses) |
+| 04 | **Diversify & reflect** | Merge near-duplicates; kill the logically broken ones before spending compute. | [Framing hypotheses](/workflow/hypotheses) |
+| 05 | **Rank** | Pairwise debates decide which the evidence favours; the board re-orders. | [Ranking](/ranking/elo) |
+| 06 | **Design the experiment** | Take the leader and its nearest rival; design the one test whose outcome splits them. | [Methodology](/workflow/methodology) |
+| 07 | **Pre-register** | Lock success/failure criteria before running anything. | [Methodology](/workflow/methodology) |
+| 08 | **Run & verify** | Execute in the sandbox; check integrity before and after; report raw outputs. | [Running experiments](/workflow/running-experiments) |
+| 09 | **Update beliefs** | Apply the pre-registered rule — mark hypotheses supported or refuted per the result. | [Findings](/workflow/findings) |
+| 10 | **Evolve & re-enter** | Breed the survivors into stronger hypotheses and loop back with a smaller board. | [Breeding](/breeding/map-elites) |
+
+## Why it loops
+
+Steps **05 → 06 → 10** are the engine. Ranking shows *where* the top rivals are close; that gap is where the decisive experiment lives. The experiment settles the question, which updates beliefs, which re-ranks the board, which points at the next experiment. Breeding refreshes the population so the loop doesn't stall.
+
+<Panel title="A refutation is data, not a failure">
+  Killing a hypothesis is the loop working — the survivor is what the evidence, not preference, has chosen.
+</Panel>
+
+## When it stops
+
+Reagent terminates when **one hypothesis has survived its crucial test and meets its pre-registered success criteria** — a clear leader with its rivals refuted — or when the step budget is spent. If the budget runs out first, it reports the state of play honestly rather than forcing a conclusion.

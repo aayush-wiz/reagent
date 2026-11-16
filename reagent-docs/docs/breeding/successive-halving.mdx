@@ -1,0 +1,32 @@
+---
+title: Successive halving
+description: Screen many candidates under a fixed budget, killing losers early.
+---
+
+With many candidate hypotheses or configurations and a fixed compute budget, running each to completion is wasteful. **Successive halving** gives every candidate a small budget, keeps the top fraction, multiplies the budget, and repeats — a tournament of experiments that spends compute on survivors.
+
+| | |
+|---|---|
+| **What** | A budget-doubling tournament that culls the weakest candidates each rung. |
+| **When** | Many candidates, a fixed budget, and you want the best without running each to completion. |
+| **In → out** | Candidates and a way to evaluate them at a budget → the winner and the elimination trace. |
+
+## At each rung
+
+```text
+rung r:  evaluate survivors at budget  b · η^r
+         keep the top  1/η
+         repeat
+```
+
+Each rung `r` multiplies the per-candidate budget by `η` and culls to the best `1/η`. Losers die early and cheaply; the winner emerges having earned the most compute.
+
+## Example (η = 3)
+
+```text
+rung 0:  27 candidates ·  budget b     → keep 9
+rung 1:   9 candidates ·  budget 3b    → keep 3
+rung 2:   3 candidates ·  budget 9b    → keep 1  (winner)
+```
+
+**Hyperband** wraps this by trying several starting budgets, so it isn't over-committed to one early-versus-late trade-off.

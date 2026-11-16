@@ -1,0 +1,55 @@
+---
+title: Research Algorithms
+description: How Reagent does research — searching papers, competing hypotheses, experiments, and the numeric methods that drive the loop.
+sidebar:
+  label: Introduction
+---
+
+Reagent is a research agent. Ask it a question and it grounds itself in real literature, holds several rival hypotheses, runs experiments to tell them apart, and hands back a cited answer. This is the reference for **how that works** — the whole method end to end, and the numeric algorithms underneath it.
+
+<CardGroup cols={3}>
+  <Card title="Search & review" icon="book-open" href="/workflow/searching-papers">
+    Find and read real papers across 42 scientific databases, then screen and synthesize them.
+  </Card>
+  <Card title="Hypothesize & test" icon="git-branch" href="/workflow/hypotheses">
+    Put rival explanations in competition and design the experiment that tells them apart.
+  </Card>
+  <Card title="Rank, select, breed" icon="trophy" href="/ranking/elo">
+    The engine that decides what leads, what to run next, and how the population evolves.
+  </Card>
+</CardGroup>
+
+## A loop, not a line
+
+A linear pipeline — guess one hypothesis, run one analysis, write it up — can only ever *confirm* what you already guessed. Reagent instead runs an **iterative Strong-Inference tournament**: it holds several rival hypotheses, makes them compete, kills some with evidence, and re-enters earlier steps as results arrive. Everything in these docs serves that loop, chosen from the live state of the research rather than a fixed schedule.
+
+<Frame caption="The research loop — Reagent scopes the question, grounds itself in papers, puts rival hypotheses in a tournament, tests the leaders, and loops back until the evidence decides.">
+  ![The Reagent research loop](/research-loop-diagram.png)
+</Frame>
+
+<Panel title="A refutation is data, not a failure">
+  Killing a hypothesis is the loop working — the survivor is what the evidence, not preference, has chosen.
+</Panel>
+
+## Start here
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Ask a question and watch Reagent run the whole loop in five steps.
+  </Card>
+  <Card title="The research loop" icon="git-branch" href="/the-research-loop">
+    The method Reagent follows, and how each step feeds the next.
+  </Card>
+  <Card title="Searching papers" icon="search" href="/workflow/searching-papers">
+    How it finds and reads real literature across dozens of sources.
+  </Card>
+  <Card title="Framing hypotheses" icon="layout-grid" href="/workflow/hypotheses">
+    Holding several competing, testable hypotheses at once.
+  </Card>
+</CardGroup>
+
+## What's in these docs
+
+- **Get Started** — the [quickstart](/quickstart) and [the research loop](/the-research-loop) at a glance.
+- **How Research Works** — [searching papers](/workflow/searching-papers), [literature review](/workflow/literature-review), [framing hypotheses](/workflow/hypotheses), [methodology](/workflow/methodology), [running experiments](/workflow/running-experiments), and [findings](/workflow/findings).
+- **The algorithms** — [ranking](/ranking/elo) hypotheses, [choosing the experiment](/selection/bandits), [breeding](/breeding/map-elites) the population, and [exploring the space](/exploring/search-strategy) — each with its formula.

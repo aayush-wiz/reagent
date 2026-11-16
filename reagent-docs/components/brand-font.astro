@@ -1,0 +1,31 @@
+---
+/*
+ * Injects the app's Geist Pixel typeface site-wide.
+ *
+ * Blume's `theme.fonts` only accepts its curated Google-font slugs (Geist Pixel
+ * isn't one), and there's no site-wide custom-CSS hook — so we self-host the
+ * font and override Blume's font CSS variables here. This component is wired to
+ * a layout slot (renders on every page); Astro hoists `<style is:global>` into
+ * <head> as global CSS, so it applies site-wide. It renders nothing visible.
+ */
+---
+<style is:global>
+  @font-face {
+    font-family: 'Geist Pixel';
+    src: url('/fonts/GeistPixel.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  /* Repoint Blume's body + display (heading) roles at Geist Pixel; leave mono
+     (code) on Blume's IBM Plex Mono default, exactly like the app. */
+  :root {
+    --blume-font-body-src: 'Geist Pixel', ui-monospace, monospace !important;
+    --blume-font-display-src: 'Geist Pixel', ui-monospace, monospace !important;
+    --blume-font-body: 'Geist Pixel', ui-monospace, monospace !important;
+    --blume-font-display: 'Geist Pixel', ui-monospace, monospace !important;
+  }
+  /* Geist Pixel ships weight 400 only — force non-bold so nothing synthesizes a
+     blurry fake-bold (matches the app's typography). */
+  * { font-weight: 400 !important; }
+</style>

@@ -1,0 +1,53 @@
+---
+title: Framing hypotheses
+description: How Reagent holds several competing, testable hypotheses at once — and lets evidence decide between them.
+---
+
+One hypothesis is advocacy, not research. Reagent turns the literature into **at least three rival hypotheses that genuinely disagree**, then makes them compete. Holding several explanations at once — mechanism A vs. mechanism B vs. "no effect / a confound" — is what lets evidence, rather than preference, decide.
+
+## What makes a good hypothesis here
+
+Each rival is stated so it can be tested, and carries three things:
+
+<CardGroup cols={3}>
+  <Card title="A null hypothesis" icon="minus-circle">
+    The default to beat — what you'd believe if the effect isn't real.
+  </Card>
+  <Card title="What would confirm it" icon="check-circle">
+    The observation that would count as support.
+  </Card>
+  <Card title="What would refute it" icon="x-circle">
+    The crucial test whose outcome would kill it. This is the most important part.
+  </Card>
+</CardGroup>
+
+Rivals should span the space of explanations, not be three phrasings of one idea. Reagent merges near-duplicates so compute is spent on distinct explanations, and a critique pass kills anything logically broken *before* an experiment is wasted on it.
+
+## The lifecycle of a hypothesis
+
+A hypothesis is durable — it lives in the workspace, not the conversation, so it survives reloads and separate sessions. As evidence arrives, its status moves:
+
+| Status | Meaning |
+|--------|---------|
+| **Alive** | In play, still competing. |
+| **Supported** | Survived its crucial test. |
+| **Refuted** | The evidence killed it — a result, not a failure. |
+| **Merged** | Folded into a near-identical rival. |
+| **Evolved** | Bred into a sharper successor. |
+
+## Competing, not just coexisting
+
+The rivals don't just sit side by side — they're ranked against each other in a running tournament, and the closest pair tells Reagent where the decisive experiment is. That ranking is its own topic:
+
+<CardGroup cols={2}>
+  <Card title="Ranking hypotheses" icon="trophy" href="/ranking/elo">
+    How pairwise debates turn into a live leaderboard.
+  </Card>
+  <Card title="Methodology" icon="ruler" href="/workflow/methodology">
+    Designing the experiment that splits the top two.
+  </Card>
+</CardGroup>
+
+<Panel title="Pre-register before you peek">
+  Before running a test, Reagent commits to what each outcome will mean for each rival. Deciding the interpretation in advance is what keeps a result honest.
+</Panel>

@@ -1,0 +1,30 @@
+
+# dependencies
+node_modules/
+reagent-docs/node_modules/
+
+# env / secrets — never commit real credentials
+.env
+.env.*
+!.env.example
+
+# build output
+dist/
+reagent-docs/dist/
+reagent-docs/.blume/
+*.tsbuildinfo
+
+# runtime data (SQLite db, per-research workspaces, extracted PDFs)
+data/
+
+# logs
+*.log
+npm-debug.log*
+
+# OS / editor cruft
+.DS_Store
+.vscode/
+.idea/
+
+# scratch/debug scripts
+_rprobe.ts

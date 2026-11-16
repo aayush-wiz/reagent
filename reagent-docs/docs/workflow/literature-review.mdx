@@ -1,0 +1,45 @@
+---
+title: Literature review
+description: PRISMA-style systematic screening and synthesis — turning a pile of papers into structured evidence.
+---
+
+Finding papers is only half the job. Reagent runs a **PRISMA-style systematic review**: it screens candidates against explicit criteria, extracts what each paper actually shows, and synthesizes the results by theme — flagging where the literature agrees, where it's still emerging, and where it contradicts itself. A review specialist runs this for each facet of a topic in parallel.
+
+## The review flow
+
+<Steps>
+  <Step title="Identification">
+    Cast a wide net across databases, then de-duplicate by DOI and title.
+  </Step>
+  <Step title="Screening">
+    Define inclusion and exclusion criteria first, then judge each candidate include or exclude with a one-line rationale that cites a criterion.
+  </Step>
+  <Step title="Eligibility">
+    For each included paper, extract the key claims (with numbers), the methods, and the authors' stated limitations.
+  </Step>
+  <Step title="Synthesis">
+    Group findings by theme — not paper by paper — separating consensus (three or more papers) from emerging (one or two recent) from contested.
+  </Step>
+  <Step title="Verify">
+    Confirm every citation's authors, year, venue, and title before it's used.
+  </Step>
+</Steps>
+
+## Evidence quality
+
+Each included paper is graded so strong multi-paper evidence isn't confused with a single weak study:
+
+<CardGroup cols={4}>
+  <Card title="Strong" icon="shield-check">Robust, replicated, well-powered.</Card>
+  <Card title="Moderate" icon="shield">Solid but with caveats.</Card>
+  <Card title="Preliminary" icon="flask-conical">Early or single-study.</Card>
+  <Card title="Weak" icon="triangle-alert">Underpowered or contested.</Card>
+</CardGroup>
+
+## Contradictions are surfaced, not smoothed over
+
+Reagent explicitly flags disagreements — *"Paper A reports X, Paper B reports Y, likely because…"* — instead of averaging them away. A contradiction is often where the interesting hypothesis lives.
+
+<Panel title="Zero fabricated citations">
+  Every factual claim carries a citation to a real, verified paper. Anything that can't be traced to a retrieved source is marked as needing a citation — never invented — and is caught again in the final [blind review](/workflow/findings).
+</Panel>

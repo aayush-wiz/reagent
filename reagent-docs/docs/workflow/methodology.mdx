@@ -1,0 +1,48 @@
+---
+title: Methodology & pre-registration
+description: Designing the crucial experiment that tells the leading hypotheses apart — and locking in what the result will mean before running it.
+---
+
+Once the tournament shows which two hypotheses are close, Reagent designs the **one experiment whose outcome would split them** — the crucial test. The goal is maximum information: not a test that merely confirms the favourite, but one that could send the leader to *refuted*.
+
+## What a methodology captures
+
+Reagent writes the design into a methodology document before any code runs:
+
+- **Research question & testable prediction** — what, precisely, this test decides.
+- **Data sources** — where the inputs come from.
+- **Analysis pipeline** — each step's method, tools, inputs, and outputs.
+- **Controls** — positive and negative, to rule out artefacts.
+- **Statistical plan** — the primary test, multiple-comparison correction, significance threshold, and effect-size measure.
+- **Limitations & assumptions** — stated up front, not buried.
+
+## Pre-registration
+
+<Steps>
+  <Step title="State the prediction">
+    Write down exactly what each rival predicts for this test.
+  </Step>
+  <Step title="Lock the criteria">
+    For each hypothesis, commit to which outcome would refute it and which would support it — before seeing any result.
+  </Step>
+  <Step title="Then, and only then, run it">
+    Committing to what a result *means* in advance is what prevents fishing for a favourable interpretation after the fact.
+  </Step>
+</Steps>
+
+<Panel title="A methodology review before compute">
+  Before running anything expensive, a critique specialist audits the design — methodological soundness, data-integrity, and the statistical plan. Blocking issues are fixed first; Reagent only proceeds on a clean pass.
+</Panel>
+
+## Choosing what to run next
+
+When the choice of *what* to test is itself expensive, Reagent doesn't guess — it selects the next experiment with the same numeric methods that power the rest of the engine:
+
+<CardGroup cols={2}>
+  <Card title="Multi-armed bandits" icon="target" href="/selection/bandits">
+    Pick the next experiment among a few options, cheaply.
+  </Card>
+  <Card title="Bayesian optimization" icon="trending-up" href="/selection/bayesian-optimization">
+    Tune a continuous knob when each run is costly.
+  </Card>
+</CardGroup>

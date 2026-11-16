@@ -1,0 +1,31 @@
+---
+title: Bayesian optimization
+description: Expensive, continuous experiment selection via a Gaussian-process surrogate and Expected Improvement.
+---
+
+When each experiment is expensive (a long sandbox run, a costly simulation) and the knob being tuned is **continuous** — a threshold, a rate, a hyperparameter — discrete options don't fit. Bayesian optimization models the objective with a **Gaussian-process surrogate** and proposes the next input that maximises an acquisition function. This is formal **optimal experimental design**.
+
+| | |
+|---|---|
+| **What** | A GP surrogate over the objective plus an acquisition function that proposes the next point. |
+| **When** | Each experiment is expensive and the input is continuous. |
+| **In → out** | Observed `(x, y)` points and input bounds → the next `x` to evaluate. |
+
+## Acquisition — Expected Improvement
+
+Under the GP posterior, score each candidate `x` by how much it's expected to beat the best result so far:
+
+```text
+EI(x) = E[ max(0, f(x) − f_best) ]
+```
+
+Then evaluate the `x` that scores highest. Expected Improvement automatically balances exploration (high-variance regions) against exploitation (high-mean regions) — no explicit exploration term to tune.
+
+## How a step works
+
+<Steps>
+  <Step title="Fit the surrogate">Fit a Gaussian process to the observed points.</Step>
+  <Step title="Score the space">Compute Expected Improvement across the bounded input space under the posterior.</Step>
+  <Step title="Evaluate the best candidate">Run the experiment at the highest-scoring input, and append the new result.</Step>
+  <Step title="Repeat">Continue until the budget is spent or improvement stalls.</Step>
+</Steps>

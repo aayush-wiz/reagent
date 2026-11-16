@@ -1,0 +1,12 @@
+{
+  "name": "reagent-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "blume dev",
+    "build": "blume build"
+  },
+  "dependencies": {
+    "blume": "^1.0.3"
+  }
+}

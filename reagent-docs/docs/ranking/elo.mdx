@@ -1,0 +1,52 @@
+---
+title: Live Elo tournament
+description: A running rating per hypothesis, updated after each pairwise verdict, so the leaderboard stays honest in real time.
+---
+
+Reagent keeps the rival hypotheses in a **running tournament**. Each pairwise verdict — decided by a scientific debate over the evidence, or settled by an experiment — updates a rating, so the board stays correctly ordered as the research proceeds. The rating maths is standard Elo: deciding *who* wins a pairing is the judgment; the update itself is just bookkeeping.
+
+| | |
+|---|---|
+| **What** | A rating per hypothesis, updated after each pairwise match. |
+| **When** | Every cycle, whenever a debate or an experiment settles a pairing. |
+| **In → out** | A winner and a loser → both ratings adjusted. |
+
+## Expected score
+
+The probability that **a** beats **b**, given their ratings:
+
+```text
+E_a = 1 / (1 + 10^((R_b − R_a) / 400))
+```
+
+A 400-point gap corresponds to roughly a 10-to-1 favourite.
+
+## Rating update
+
+After a match, each rating moves toward its result:
+
+```text
+R′ = R + K · (S − E)
+```
+
+- **S** is the actual result — `1` win, `0` loss, `0.5` draw.
+- **K = 32** is the step size — the long-standing default, right for a handful of hypotheses over a few rounds.
+- New hypotheses start at **1000**.
+
+Because **E** already encodes the ratings, beating a higher-rated rival moves you more than beating a weaker one — the board self-corrects toward the true ordering.
+
+## Worked example
+
+Two hypotheses at the base rating, `A` beats `B`:
+
+```text
+R_A = R_B = 1000   →   E_A = E_B = 0.5
+A wins  (S = 1): R_A′ = 1000 + 32·(1 − 0.5) = 1016
+B loses (S = 0): R_B′ = 1000 + 32·(0 − 0.5) =  984
+```
+
+## Convergence signal
+
+A clear leader with its rivals refuted means the loop has **converged**. When the top rivals are still close, that narrow gap is telling Reagent exactly **where the decisive experiment is** — design the test that splits them ([Choosing the experiment](/selection/bandits)).
+
+For a sharper, order-independent ranking once the tournament is complete, Reagent refits the whole match log with [Bradley–Terry](/ranking/bradley-terry).

@@ -1,0 +1,46 @@
+---
+title: Quickstart
+description: Ask a research question and watch Reagent run the whole loop — search, hypotheses, experiments, and a cited answer.
+---
+
+Reagent is a research agent. You give it a question; it grounds itself in real literature, forms competing hypotheses, designs and runs experiments to tell them apart, and hands back a cited answer — with its plan, methodology, and findings saved as living documents you can read and extend.
+
+<Steps>
+  <Step title="Ask a research question">
+    Start a chat and state what you want to know — "Does retrieval-augmented training improve factuality in small models?" A sharp, answerable question works best; if it's ambiguous in a way that changes the answer, Reagent asks one clarifying question and proceeds.
+  </Step>
+  <Step title="It grounds itself in the literature">
+    Reagent breaks the topic into facets and searches real papers across dozens of scientific databases in parallel, then reads and synthesizes what it finds — see [Searching papers](/workflow/searching-papers) and [Literature review](/workflow/literature-review).
+  </Step>
+  <Step title="It puts rival hypotheses in competition">
+    Instead of committing to one guess, it holds several [competing hypotheses](/workflow/hypotheses), ranks them by which the evidence favours, and designs the experiment that would tell the leaders apart.
+  </Step>
+  <Step title="It runs experiments and reports raw results">
+    Reagent executes analyses in an isolated compute sandbox, produces figures from real data, and reports outputs exactly as produced — see [Methodology](/workflow/methodology) and [Running experiments](/workflow/running-experiments).
+  </Step>
+  <Step title="You read the findings">
+    Durable, cited conclusions land in the [findings](/workflow/findings) document and in your workspace. Reagent keeps a plan, a literature review, a methodology, and a findings document current as it works — so a research survives reloads and picks back up where it left off.
+  </Step>
+</Steps>
+
+<Panel title="It keeps running on its own">
+  A run executes in the background, not in your browser tab — leave the page and come back and it's still working. Long investigations continue across chat sessions because the research state is durable, not held in the conversation.
+</Panel>
+
+## What you get back
+
+- A **cited answer** in chat, grounded in papers Reagent actually retrieved and read.
+- Living **documents** — plan, literature review, methodology, and findings — that you can open, read, and build on.
+- **Figures and tables** produced from real data in the sandbox.
+- A transparent **trace** of what it searched, hypothesized, tested, and concluded.
+
+## Next
+
+<CardGroup cols={2}>
+  <Card title="The research loop" icon="git-branch" href="/the-research-loop">
+    The method Reagent follows — a loop, not a line.
+  </Card>
+  <Card title="How research works" icon="compass" href="/workflow/searching-papers">
+    The full workflow, step by step, from papers to findings.
+  </Card>
+</CardGroup>
